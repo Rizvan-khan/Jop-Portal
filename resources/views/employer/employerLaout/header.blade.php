@@ -52,8 +52,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="{{route ('employer.dashboard')}}" class="nav-item nav-link active">Home</a>
                     @php
                     $employerId = Auth::guard('employer')->id();
                     $company = \App\Models\Company::where('employer_id', $employerId)->first();
@@ -64,18 +63,10 @@
                         Edit Company
                     </a>
                     @else
-                    <a href="{{ route('employer.company.create') }}" class="nav-item nav-link">
+                    <a href="company/create" class="nav-item nav-link">
                         Add C Detail
                     </a>
                     @endif
-
-                    <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jobs</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="job-list.html" class="dropdown-item">Job List</a>
-                            <a href="job-detail.html" class="dropdown-item">Job Detail</a>
-                        </div>
-                    </div> -->
 
                     @if(Auth::guard('employer')->check())
 
@@ -90,9 +81,8 @@
                     <a href="{{ route('employer.auth.login') }}" class="nav-item nav-link">Login</a>
                     @endif
 
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="#" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+                
             </div>
         </nav>
         <!-- Navbar End -->

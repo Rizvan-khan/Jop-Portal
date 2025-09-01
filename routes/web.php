@@ -40,8 +40,25 @@ Route::post('/login', [EmployerAuthController::class, 'login'])->name('auth.logi
         Route::get('/company/create', [CompanyController::class, 'create'])->name('company.add.company');
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.add-company.store');
         Route::get('/company/{id}/edit', [CompanyController::class, 'edit'])->name('company.edit');
-
+        Route::put('/company/{id}/update', [CompanyController::class, 'update'])->name('company.edit');
         Route::post('/logout', [EmployerAuthController::class, 'logout'])->name('auth.logout.submit');
+
+        // add jobs
+       Route::get('/job/create', [CompanyController::class, 'createJob'])->name('job.add-job');
+       Route::post('/job/store', [CompanyController::class, 'storeJobs'])->name('job.add-job.store');
+       Route::get('/dashboard', [CompanyController::class, 'getalljob'])
+     ->name('dashboard');
+     Route::get('/job/edit/{job_id}', [CompanyController::class, 'EditJob'])->name('job.edit-job');
+     Route::post('/job/update/{id}', [CompanyController::class, 'UpdateJObs'])
+     ->name('job.update');
+     Route::delete('/job/delete/{job_id}', [CompanyController::class, 'DeleteJob'])
+     ->name('job.delete');
+
+        // jobs ends here
+
+
+
+
     });
 
 });
