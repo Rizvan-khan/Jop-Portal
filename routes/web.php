@@ -39,6 +39,7 @@ Route::post('/login', [EmployerAuthController::class, 'login'])->name('auth.logi
 
         Route::get('/company/create', [CompanyController::class, 'create'])->name('company.add.company');
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.add-company.store');
+        Route::get('/company/{id}/edit', [CompanyController::class, 'edit'])->name('company.edit');
 
         Route::post('/logout', [EmployerAuthController::class, 'logout'])->name('auth.logout.submit');
     });

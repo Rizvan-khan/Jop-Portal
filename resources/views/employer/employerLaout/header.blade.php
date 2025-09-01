@@ -54,7 +54,21 @@
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
                     <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="company/create" class="nav-item nav-link">Add C Detail</a>
+                    @php
+                    $employerId = Auth::guard('employer')->id();
+                    $company = \App\Models\Company::where('employer_id', $employerId)->first();
+                    @endphp
+
+                    @if($company)
+                    <a href="{{ route('employer.company.edit', $company->id) }}" class="nav-item nav-link">
+                        Edit Company
+                    </a>
+                    @else
+                    <a href="{{ route('employer.company.create') }}" class="nav-item nav-link">
+                        Add C Detail
+                    </a>
+                    @endif
+
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jobs</a>
                         <div class="dropdown-menu rounded-0 m-0">
@@ -65,7 +79,7 @@
 
                     @if(Auth::guard('employer')->check())
 
-                    <form method="POST" id="logout-form"  action="{{ route('employer.auth.logout.submit') }}">
+                    <form method="POST" id="logout-form" action="{{ route('employer.auth.logout.submit') }}">
                         @csrf
                         <a href="#" class="nav-item nav-link"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

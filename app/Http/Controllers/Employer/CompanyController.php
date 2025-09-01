@@ -50,4 +50,16 @@ class CompanyController extends Controller
 
   return redirect()->route('employer.dashboard')->with('success', 'Company added successfully!');
     }
+
+
+ public function edit($id)
+    {
+        $company = Company::findOrFail($id);
+        if ($company->employer_id !== Auth::guard('employer')->id()) {
+            abort(403);
+        }
+        return view('employer.company.edit', compact('company'));
+    }
+
+
 }
