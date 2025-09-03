@@ -38,7 +38,7 @@
                             <div class="col-sm-12 col-md-8 d-flex align-items-center">
                                 <img class="flex-shrink-0 img-fluid border rounded" src="{{asset('theme/img/com-logo-1.jpg')}}" alt="" style="width: 80px; height: 80px;">
                                 <div class="text-start ps-4">
-                                    <h5 class="mb-3">{{ $job->designation }}</h5>
+                                    <h6 class="mb-3">{{ $job->designation }}</h6>
                                     <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->location }}</span>
                                     <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ $job->address }}</span>
                                     <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{ $job->salary }}</span>

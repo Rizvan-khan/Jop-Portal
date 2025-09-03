@@ -90,6 +90,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/dashboard', [ProfileController::class, 'getalljobs'])->name('dashboard');
+        Route::get('/jobs', [ProfileController::class, 'getalljobs'])->name('jobs.list');
+        Route::post('{job_id}/save/job', [ProfileController::class, 'saveJob'])->name('job.add');
+          Route::post('{job_id}/remove/job', [ProfileController::class, 'removejobs'])->name('job.remove');
+     Route::get('all/saved/job', [ProfileController::class, 'Getallsavejob'])->name('job.save-job');
+     Route::get('job/application', [ProfileController::class, 'sendjobapplication'])->name('job.application');
+ Route::get('profile', [ProfileController::class, 'userprofile'])->name('profile');
+
+
 });
 
 require __DIR__.'/auth.php';
