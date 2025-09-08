@@ -44,9 +44,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{route('dashboard')}}" class="nav-item nav-link active">Home</a>
-                   <a href="#" class="nav-item nav-link" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar" aria-controls="profileSidebar">
-    Profile
-</a>
+                    <a href="#" class="nav-item nav-link" data-bs-toggle="offcanvas" data-bs-target="#profileSidebar" aria-controls="profileSidebar">
+                        Profile
+                    </a>
                     <a class="nav-item nav-link" href="{{route('job.save-job')}}"><i class="far fa-heart text-primary"></i></a>
                 </div>
 
@@ -54,6 +54,4 @@
         </nav>
         <!-- Navbar End -->
 
-
-  
-
+        
