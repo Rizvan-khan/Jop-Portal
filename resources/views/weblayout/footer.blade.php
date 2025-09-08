@@ -1,34 +1,4 @@
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-white-50 footer pt-2 mt-2 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-2">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-3">
-                        <a class="btn btn-link text-white-50" href="{{route ('dashboard')}}">Home</a>
-                       
-                    </div>
-
-                      <div class="col-lg-3 col-md-3">
-                       
-                       
-                    </div>
-
-                      <div class="col-lg-3 col-md-3">
-                        
-                    </div>
-
-                      <div class="col-lg-3 col-md-3">
-                        <a class="btn btn-link text-white-50" href="{{route ('profile')}}">Profile</a>
-                       
-                    </div>
-                  
-                  
-                  
-                </div>
-            </div>
-            
-        </div>
-        <!-- Footer End -->
 
 
         <!-- Back to Top -->
@@ -47,5 +17,81 @@
     <!-- Template Javascript -->
     <script src="{{asset('theme/js/main.js')}}" type="39e2b84fceb4e994d105b107-text/javascript"></script>
 <script src="{{ asset('theme/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js')}}" data-cf-settings="39e2b84fceb4e994d105b107-|49" defer></script></body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#editContact').on('submit', function(e) {
+        e.preventDefault();
+$.ajax({
+    url: "{{ route('profile.edit-contact') }}",
+    type: "PUT",  // yaha PUT karo
+    data: $(this).serialize(),
+    success: function(response) {
+        if(response.success){
+            toastr.success(response.message, 'Success', {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                timeOut: 3000
+            });
+        }
+    },
+    error: function(xhr) {
+         toastr.error("Something went wrong!", 'Error', {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        timeOut: 3000
+    });
+    }
+});
+
+    });
+});
+
+
+// upload resume 
+
+$(document).ready(function () {
+    $('#editResume').on('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData(this); // <-- yaha FormData use karo
+
+        $.ajax({
+            url: "{{ route('profile.edit-resume') }}",
+            type: "POST",  // hamesha POST rakho, Laravel _method=PUT handle karega
+            data: formData,
+            processData: false, // ye do line zaroori hai
+            contentType: false,
+            success: function(response) {
+                if(response.success){
+                    toastr.success(response.message, 'Success', {
+                        closeButton: true,
+                        progressBar: true,
+                        positionClass: "toast-top-right",
+                        timeOut: 3000
+                    });
+                }
+            },
+            error: function(xhr) {
+                toastr.error("Something went wrong!", 'Error', {
+                    closeButton: true,
+                    progressBar: true,
+                    positionClass: "toast-top-right",
+                    timeOut: 3000
+                });
+                console.log(xhr.responseText); // debug ke liye
+            }
+        });
+    });
+});
+
+// ends here
+
+</script>
+
 
 </html>

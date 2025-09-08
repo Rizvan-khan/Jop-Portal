@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\user_detail;
 
 class RegisteredUserController extends Controller
 {
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+      $user->user_detail()->create([]);
 
         // Auth::login($user);
 

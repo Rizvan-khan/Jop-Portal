@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\JobSave;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,17 @@ class User extends Authenticatable
     public function savedJobs()
 {
     return $this->hasMany(JobSave::class, 'user_id');
+}
+
+
+public function user_detail():HasOne
+{
+    return $this->hasOne(user_detail::class);
+}
+
+public function resume():HasOne
+{
+    return $this->hasOne(Resume::class);
 }
 
 }
