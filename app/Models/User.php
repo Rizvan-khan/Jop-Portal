@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\JobSave;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -63,6 +64,11 @@ public function user_detail():HasOne
 public function resume():HasOne
 {
     return $this->hasOne(Resume::class);
+}
+
+public function jobapplicationreview():HasMany
+{
+    return $this->hasMany(JobApplicationreview::class);
 }
 
 }

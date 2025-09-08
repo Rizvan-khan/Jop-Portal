@@ -90,7 +90,8 @@ Route::middleware('auth')->group(function () {
     Route::post('{job_id}/save/job', [ProfileController::class, 'saveJob'])->name('job.add');
     Route::post('{job_id}/remove/job', [ProfileController::class, 'removejobs'])->name('job.remove');
     Route::get('all/saved/job', [ProfileController::class, 'Getallsavejob'])->name('job.save-job');
-    Route::get('job/application', [ProfileController::class, 'sendjobapplication'])->name('job.application');
+    Route::get('{job_id}/job/application', [ProfileController::class, 'sendjobapplication'])->name('job.application');
+    Route::post('{job_id}/job/application', [ProfileController::class, 'Jobreview'])->name('job.application');
     Route::get('profile', [ProfileController::class, 'userprofile'])->name('profile');
     Route::get('edit/contact', [ProfileController::class, 'editContact'])->name('profile.edit-contact');
     Route::put('edit/contact', [ProfileController::class, 'updateContact'])->name('profile.edit-contact');

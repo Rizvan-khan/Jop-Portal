@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Company_Jobs;
+use App\Models\JobApplicationreview;
 use App\Models\JobSave;
 use App\Models\User;
 use App\Models\user_detail;
@@ -121,9 +122,12 @@ public function Getallsavejob(){
     return view('job.save-job',compact('alljob'));
 }
 
-public function sendjobapplication(){
-    return view('job.application');
+public function sendjobapplication($job_id)
+{
+    return view('job.application', compact('job_id'));
 }
+
+
 public function userprofile(){
     return view('profile');
 }
@@ -198,6 +202,25 @@ public function updateResume(Request $request)
     ]);
 }
 
+
+public function Jobreview(Request $request,$job_id)
+{
+    $request->validate([
+        'user_id' => 'required',
+         'job_id' => 'required',
+    ]);
+$userid = Auth::id();
+$job_id = $request->job_id;
+    JobApplicationreview::Create(
+        ['user_id' => $userid],
+        ['job_id' => $job_id]
+    );
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Job Application submitted successfully!',
+    ]);
+}
 
 
 }
