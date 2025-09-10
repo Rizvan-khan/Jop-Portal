@@ -123,7 +123,7 @@
                                           <i class="far fa-heart text-primary"></i>
                                         </button>
                                     </form>
-                                    <a class="btn btn-primary" href="{{ route('job.application', ['job_id' => $job->id]) }}">Apply Now</a>
+                                    <a class="btn btn-primary" href="{{ route('job.application', ['job_id' => $all->id]) }}">Apply Now</a>
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: {{ $all->created_at }}</small>
                             </div>

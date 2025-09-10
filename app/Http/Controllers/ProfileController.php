@@ -203,24 +203,23 @@ public function updateResume(Request $request)
 }
 
 
-public function Jobreview(Request $request,$job_id)
+public function Jobreview(Request $request)
 {
     $request->validate([
-        'user_id' => 'required',
-         'job_id' => 'required',
+        'job_id' => 'required|exists:jobs,id',
     ]);
-$userid = Auth::id();
-$job_id = $request->job_id;
-    JobApplicationreview::Create(
-        ['user_id' => $userid],
-        ['job_id' => $job_id]
-    );
 
-    return response()->json([
-        'success' => true,
-        'message' => 'Job Application submitted successfully!',
+    $userid = Auth::id();
+    $job_id = $request->job_id;
+
+    JobApplicationreview::create([
+        'user_id' => $userid,
+        'job_id'  => $job_id,
     ]);
+
+    return redirect()->back()->with('success', 'Job Application submitted successfully!');
 }
+
 
 
 }
