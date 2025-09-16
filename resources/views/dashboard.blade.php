@@ -80,13 +80,13 @@
 <!-- Search End -->
 
 @if(session('success'))
-    <div class="alert alert-success">
+    <div id="alert-message" class="alert alert-success ">
         {{ session('success') }}
     </div>
 @endif
 
 @if(session('error'))
-    <div class="alert alert-danger">
+    <div id="alert-message" class="alert alert-danger ">
         {{ session('error') }}
     </div>
 @endif
@@ -123,7 +123,9 @@
                                           <i class="far fa-heart text-primary"></i>
                                         </button>
                                     </form>
+                                   
                                     <a class="btn btn-primary" href="{{ route('job.application', ['job_id' => $all->id]) }}">Apply Now</a>
+                                
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: {{ $all->created_at }}</small>
                             </div>

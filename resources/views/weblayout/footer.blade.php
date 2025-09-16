@@ -94,6 +94,16 @@ $(document).ready(function () {
 
 
 </script>
-
+<script>
+    // Hide after 3 seconds (3000ms)
+    setTimeout(() => {
+        let alert = document.getElementById('alert-message');
+        if (alert) {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = "0";
+            setTimeout(() => alert.remove(), 500); // remove from DOM
+        }
+    }, 3000);
+</script>
 
 </html>

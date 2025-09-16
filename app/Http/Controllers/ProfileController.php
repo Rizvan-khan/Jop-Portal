@@ -205,19 +205,36 @@ public function updateResume(Request $request)
 
 public function Jobreview(Request $request)
 {
+
+
+
     $request->validate([
-        'job_id' => 'required|exists:jobs,id',
+        'job_id' => 'required|exists:company__jobs,id',
+       
     ]);
 
     $userid = Auth::id();
     $job_id = $request->job_id;
 
+
+  // Check if already applied
+    $alreadyApplied = JobApplicationreview::where('user_id', $userid)
+        ->where('job_id', $job_id)
+        ->exists();
+
+    if ($alreadyApplied) {
+        return redirect()->route('dashboard')
+            ->with('error', 'You have already applied for this job.');
+    }
+
     JobApplicationreview::create([
         'user_id' => $userid,
         'job_id'  => $job_id,
+        'status' => 0,
     ]);
 
-    return redirect()->back()->with('success', 'Job Application submitted successfully!');
+    return redirect()->route('dashboard')
+        ->with('success', 'Job Application submitted successfully!');
 }
 
 

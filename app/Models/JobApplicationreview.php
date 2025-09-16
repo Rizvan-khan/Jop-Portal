@@ -7,18 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class JobApplicationreview extends Model
 {
+      protected $table = 'job_applicationreviews';
    protected $fillable = ['job_id','user_id','status'];
-
-   
-
-     public function user():BelongsTo
-    {
-return $this->belongsTo(User::class);
-    }
-
 
     public function job():BelongsTo
     {
-return $this->belongsTo(Company_Jobs::class);
+return $this->belongsTo(User::class);
     }
 }
